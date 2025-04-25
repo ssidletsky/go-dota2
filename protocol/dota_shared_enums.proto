@@ -1,5 +1,6 @@
 syntax = "proto2";
 package protocol;
+option go_package = "github.com/paralin/go-dota2/protocol";
 
 enum DOTA_GameMode {
 	DOTA_GAMEMODE_NONE = 0;

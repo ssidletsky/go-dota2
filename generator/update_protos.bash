@@ -39,7 +39,7 @@ cp \
     ${WORK_DIR}/orig/
 
 mkdir -p ${WORK_DIR}/orig/google/protobuf
-cp -ra ${GAME_PATH}/google/protobuf/. ${WORK_DIR}/orig/google/protobuf/
+cp -a ${GAME_PATH}/google/protobuf/. ${WORK_DIR}/orig/google/protobuf/
 
 cd ${WORK_DIR}
 # Add valve_extensions.proto
@@ -47,7 +47,7 @@ cp ${REPO_PROTOS}/valve_extensions.proto ${WORK_DIR}/orig/
 # Add package lines to each protobuf file.
 for f in ${WORK_DIR}/orig/*.proto ; do
     fname=$(basename $f)
-    printf 'syntax = "proto2";\npackage protocol;\n\n' |\
+    printf 'syntax = "proto2";\npackage protocol;\noption go_package = "github.com/paralin/go-dota2/protocol";\n\n' |\
         cat - $f |\
         sed -e "s/optional \./optional /g" \
             -e "s/required \./required /g" \
@@ -62,7 +62,7 @@ sed -i -e "s/(.CMsgSteamLearn/(CMsgSteamLearn/g" ${WORK_DIR}/protos/steammessage
 
 # Generate protobufs
 cd ${WORK_DIR}/protos
-protoc -I $(pwd) --go_out=. $(pwd)/*.proto
+protoc -I $(pwd) --go_out=paths=source_relative:. $(pwd)/*.proto
 
 # Move final files out.
 rsync -rv --delete $(pwd)/ ${REPO_ROOT}/protocol/

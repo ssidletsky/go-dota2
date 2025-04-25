@@ -331,31 +331,31 @@ message CMsgSteamLearn_Inference_Response {
 service SteamLearn {
 	option (service_description) = "Service for submitting data, training, and inferencing with SteamLearn.";
 
-	rpc RegisterDataSource (CMsgSteamLearn_RegisterDataSource_Request) returns (CMsgSteamLearn_RegisterDataSource_Response) {
+	rpc RegisterDataSource (.CMsgSteamLearn_RegisterDataSource_Request) returns (.CMsgSteamLearn_RegisterDataSource_Response) {
 		option (method_description) = "Registers a data desc (or finds a data desc if it's already registered).";
 	}
 
-	rpc CacheData (CMsgSteamLearn_CacheData_Request) returns (CMsgSteamLearn_CacheData_Response) {
+	rpc CacheData (.CMsgSteamLearn_CacheData_Request) returns (.CMsgSteamLearn_CacheData_Response) {
 		option (method_description) = "Updates a cached data entry.";
 	}
 
-	rpc SnapshotProject (CMsgSteamLearn_SnapshotProject_Request) returns (CMsgSteamLearn_SnapshotProject_Response) {
+	rpc SnapshotProject (.CMsgSteamLearn_SnapshotProject_Request) returns (.CMsgSteamLearn_SnapshotProject_Response) {
 		option (method_description) = "Snapshots the current data for a project.";
 	}
 
-	rpc BatchOperation (CMsgSteamLearn_BatchOperation_Request) returns (CMsgSteamLearn_BatchOperation_Response) {
+	rpc BatchOperation (.CMsgSteamLearn_BatchOperation_Request) returns (.CMsgSteamLearn_BatchOperation_Response) {
 		option (method_description) = "Batches multiple data updates, snapshots, and inference requests into a single call";
 	}
 
-	rpc GetHMACKeys (CMsgSteamLearn_GetHMACKeys_Request) returns (CMsgSteamLearn_GetHMACKeys_Response) {
+	rpc GetHMACKeys (.CMsgSteamLearn_GetHMACKeys_Request) returns (.CMsgSteamLearn_GetHMACKeys_Response) {
 		option (method_description) = "Gets the HMAC keys needed for registering data sources, submitting data to them, and snapshotting projects";
 	}
 
-	rpc Inference (CMsgSteamLearn_Inference_Request) returns (CMsgSteamLearn_Inference_Response) {
+	rpc Inference (.CMsgSteamLearn_Inference_Request) returns (.CMsgSteamLearn_Inference_Response) {
 		option (method_description) = "Inferences using supplied data, or data associated with the specified key.";
 	}
 
-	rpc InferenceMetadata (CMsgSteamLearn_InferenceMetadata_Request) returns (CMsgSteamLearn_InferenceMetadata_Response) {
+	rpc InferenceMetadata (.CMsgSteamLearn_InferenceMetadata_Request) returns (.CMsgSteamLearn_InferenceMetadata_Response) {
 		option (method_description) = "Requests the metadata that was generated from a specified fetch.";
 	}
 }
